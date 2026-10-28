@@ -1,67 +1,38 @@
 ---
-
+const testimonies = [
+  { name: "Budi Santoso", role: "Pemilik Toko Bangunan", quote: "Lokasinya ramai, sejak buka toko omzet langsung naik. Prosesnya juga cepat lewat WhatsApp." },
+  { name: "Siti Rahmawati", role: "Owner Klinik Kecantikan", quote: "Legalitas lengkap dan tim sangat membantu dari survei sampai serah terima kunci." },
+  { name: "Andi Pratama", role: "Pengusaha Kuliner", quote: "Parkirnya luas, pelanggan nyaman. Sangat cocok untuk usaha kafe saya." },
+];
 ---
 
-<ul
-  class="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
->
-  <li class="flex flex-col rounded-lg border border-gray-200 p-6">
-    <blockquote class="flex-1 text-sm text-gray-700">
-      &ldquo;Setup took less time than the coffee I made while doing it. The
-      defaults are genuinely good, which is rare.&rdquo;
-    </blockquote>
+<section id="testimoni" class="scroll-mt-16 bg-white">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <header class="mx-auto max-w-2xl text-center">
+      <p class="font-semibold text-teal-600">Testimoni</p>
+      <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Dipercaya para pelaku usaha</h2>
+    </header>
 
-    <div class="mt-6 flex items-center gap-3">
-      <img
-        alt=""
-        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=200"
-        class="size-9 rounded-full object-cover"
-      />
-
-      <div>
-        <p class="text-sm font-medium text-gray-900">Marcus Boyle</p>
-        <p class="text-xs text-gray-500">Founder, Northwind Studio</p>
-      </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {testimonies.map((t) => (
+        <figure class="flex flex-col rounded-2xl bg-gray-50 p-6 ring-1 ring-gray-100">
+          <div class="flex gap-0.5 text-amber-400" aria-label="5 bintang">
+            {Array.from({ length: 5 }).map(() => (
+              <svg aria-hidden="true" class="size-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.05 2.93c.3-.92 1.6-.92 1.9 0l1.07 3.29a1 1 0 0 0 .95.69h3.46c.97 0 1.37 1.24.59 1.81l-2.8 2.03a1 1 0 0 0-.36 1.12l1.07 3.29c.3.92-.76 1.69-1.54 1.12l-2.8-2.03a1 1 0 0 0-1.18 0l-2.8 2.03c-.78.57-1.84-.2-1.54-1.12l1.07-3.29a1 1 0 0 0-.36-1.12L2.98 8.72c-.78-.57-.38-1.81.59-1.81h3.46a1 1 0 0 0 .95-.69l1.07-3.29Z" />
+              </svg>
+            ))}
+          </div>
+          <blockquote class="mt-4 flex-1 text-pretty text-gray-700">“{t.quote}”</blockquote>
+          <figcaption class="mt-6 flex items-center gap-3">
+            <span class="grid size-10 place-content-center rounded-full bg-teal-600 font-semibold text-white">{t.name[0]}</span>
+            <span>
+              <span class="block font-semibold text-gray-900">{t.name}</span>
+              <span class="block text-sm text-gray-500">{t.role}</span>
+            </span>
+          </figcaption>
+        </figure>
+      ))}
     </div>
-  </li>
-
-  <li class="flex flex-col rounded-lg border border-gray-200 p-6">
-    <blockquote class="flex-1 text-sm text-gray-700">
-      &ldquo;We tried three other tools before this one. It's the only one the
-      whole team still opens without being reminded to.&rdquo;
-    </blockquote>
-
-    <div class="mt-6 flex items-center gap-3">
-      <img
-        alt=""
-        src="https://images.unsplash.com/photo-1601412436009-d964bd02edbc?auto=format&fit=crop&q=80&w=200"
-        class="size-9 rounded-full object-cover"
-      />
-
-      <div>
-        <p class="text-sm font-medium text-gray-900">Priya Natarajan</p>
-        <p class="text-xs text-gray-500">Ops Lead, Orbitly</p>
-      </div>
-    </div>
-  </li>
-
-  <li class="flex flex-col rounded-lg border border-gray-200 p-6">
-    <blockquote class="flex-1 text-sm text-gray-700">
-      &ldquo;Migrating five years of data usually breaks something. Nothing
-      broke. That's the whole review.&rdquo;
-    </blockquote>
-
-    <div class="mt-6 flex items-center gap-3">
-      <img
-        alt=""
-        src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200"
-        class="size-9 rounded-full object-cover"
-      />
-
-      <div>
-        <p class="text-sm font-medium text-gray-900">Kwame Asante</p>
-        <p class="text-xs text-gray-500">CTO, Fieldnote</p>
-      </div>
-    </div>
-  </li>
-</ul>
+  </div>
+</section>

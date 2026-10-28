@@ -1,36 +1,43 @@
 ---
-
+import { RUKOS, waLink } from "../data/site";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
 ---
 
-<section class="bg-white lg:grid lg:h-screen lg:place-content-center">
-  <div
-    class="mx-auto w-screen max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32"
-  >
-    <div class="mx-auto max-w-prose text-center">
-      <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl">
-        Understand user flow and
-        <strong class="text-indigo-600"> increase </strong>
-        conversions
+<section class="relative isolate overflow-hidden bg-gray-900 pt-16">
+  <img
+    src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&q=80&w=1800"
+    alt=""
+    class="absolute inset-0 -z-10 size-full object-cover opacity-40"
+  />
+  <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
+
+  <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 rounded-full bg-teal-500/15 px-3 py-1 text-sm font-medium text-teal-300 ring-1 ring-teal-400/30">
+        <span class="size-2 rounded-full bg-teal-400"></span>
+        {RUKOS.length} unit ruko tersedia di Bogor
+      </span>
+
+      <h1 class="mt-6 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+        Ruko strategis untuk <span class="text-teal-400">usaha yang berkembang</span>
       </h1>
 
-      <p class="mt-4 text-base text-pretty text-gray-700 sm:text-lg/relaxed">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, nisi.
-        Natus, provident accusamus impedit minima harum corporis iusto.
+      <p class="mt-6 text-lg/relaxed text-pretty text-gray-300">
+        Lokasi ramai, akses mudah, dan legalitas jelas. Pilih ruko yang sesuai kebutuhan Anda,
+        lalu konsultasikan langsung via WhatsApp — gratis dan tanpa ribet.
       </p>
 
-      <div class="mt-4 flex justify-center gap-4 sm:mt-6">
-        <a
-          class="inline-block rounded border border-indigo-600 bg-indigo-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700"
-          href="#"
-        >
-          Get Started
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="#ruko" class="rounded-lg bg-teal-500 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-teal-400">
+          Lihat Pilihan Ruko
         </a>
-
         <a
-          class="inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
-          href="#"
+          href={waLink()}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 rounded-lg bg-white/10 px-6 py-3 font-semibold text-white ring-1 ring-white/20 transition hover:bg-white/20"
         >
-          Learn More
+          <WhatsAppIcon /> Tanya via WhatsApp
         </a>
       </div>
     </div>

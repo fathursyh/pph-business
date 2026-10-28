@@ -1,117 +1,72 @@
 ---
+import { RUKOS, waLink } from "../data/site";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
 
+const statusStyle = {
+  Tersedia: "bg-green-100 text-green-700",
+  Terbatas: "bg-amber-100 text-amber-700",
+  Terjual: "bg-gray-200 text-gray-600",
+};
 ---
 
-<section>
-  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-    <header>
-      <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">
-        Pilihan Ruko
-      </h2>
-
-      <p class="mt-4 max-w-md text-gray-500">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
-        praesentium cumque iure dicta incidunt est ipsam, officia dolor fugit
-        natus?
-      </p>
+<section id="ruko" class="scroll-mt-16 bg-gray-50">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <header class="mx-auto max-w-2xl text-center">
+      <p class="font-semibold text-teal-600">Pilihan Ruko</p>
+      <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Temukan ruko yang pas untuk usaha Anda</h2>
+      <p class="mt-4 text-gray-600">Klik "Pesan via WhatsApp" dan pesan otomatis akan terisi sesuai ruko pilihan Anda.</p>
     </header>
 
-    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <li>
-        <a href="#" class="group block overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=1160"
-            alt=""
-            class="h-87.5 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-112.5"
-          />
-
-          <div class="relative bg-white pt-3">
-            <h3
-              class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4"
-            >
-              Basic Tee
-            </h3>
-
-            <p class="mt-2">
-              <span class="sr-only"> Regular Price </span>
-
-              <span class="tracking-wider text-gray-900"> £24.00 GBP </span>
-            </p>
+    <ul class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {RUKOS.map((r) => (
+        <li class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200 transition hover:shadow-lg">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src={r.image} alt={r.name} loading="lazy" class="size-full object-cover transition duration-500 group-hover:scale-105" />
+            <span class={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-semibold ${statusStyle[r.status]}`}>{r.status}</span>
           </div>
-        </a>
-      </li>
 
-      <li>
-        <a href="#" class="group block overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=1160"
-            alt=""
-            class="h-87.5 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-112.5"
-          />
-
-          <div class="relative bg-white pt-3">
-            <h3
-              class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4"
-            >
-              Basic Tee
-            </h3>
-
-            <p class="mt-2">
-              <span class="sr-only"> Regular Price </span>
-
-              <span class="tracking-wider text-gray-900"> £24.00 GBP </span>
+          <div class="flex flex-1 flex-col p-6">
+            <h3 class="text-xl font-bold text-gray-900">{r.name}</h3>
+            <p class="mt-1 flex items-center gap-1 text-sm text-gray-500">
+              <svg aria-hidden="true" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11Z" /><circle cx="12" cy="10" r="2.5" />
+              </svg>
+              {r.location}
             </p>
+
+            <dl class="mt-5 grid grid-cols-3 gap-2 rounded-xl bg-gray-50 p-3 text-center text-sm">
+              <div><dt class="text-xs text-gray-500">Lantai</dt><dd class="font-semibold text-gray-900">{r.specs.floors}</dd></div>
+              <div><dt class="text-xs text-gray-500">Luas Tanah</dt><dd class="font-semibold text-gray-900">{r.specs.landArea}</dd></div>
+              <div><dt class="text-xs text-gray-500">Luas Bangunan</dt><dd class="font-semibold text-gray-900">{r.specs.buildingArea}</dd></div>
+            </dl>
+
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {r.highlights.map((h) => (
+                <li class="rounded-md bg-teal-50 px-2 py-1 text-xs font-medium text-teal-700">{h}</li>
+              ))}
+            </ul>
+
+            <div class="mt-auto flex items-end justify-between gap-4 pt-6">
+              <p>
+                <span class="block text-xs text-gray-500">Mulai dari</span>
+                <span class="text-2xl font-bold text-gray-900">{r.price}</span>
+              </p>
+              {r.status === "Terjual" ? (
+                <span class="rounded-lg bg-gray-100 px-4 py-2.5 text-sm font-semibold text-gray-500">Terjual</span>
+              ) : (
+                <a
+                  href={waLink(r)}
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700"
+                >
+                  <WhatsAppIcon class="size-4" /> Pesan via WhatsApp
+                </a>
+              )}
+            </div>
           </div>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" class="group block overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=1160"
-            alt=""
-            class="h-87.5 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-112.5"
-          />
-
-          <div class="relative bg-white pt-3">
-            <h3
-              class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4"
-            >
-              Basic Tee
-            </h3>
-
-            <p class="mt-2">
-              <span class="sr-only"> Regular Price </span>
-
-              <span class="tracking-wider text-gray-900"> £24.00 GBP </span>
-            </p>
-          </div>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" class="group block overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=1160"
-            alt=""
-            class="h-87.5 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-112.5"
-          />
-
-          <div class="relative bg-white pt-3">
-            <h3
-              class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4"
-            >
-              Basic Tee
-            </h3>
-
-            <p class="mt-2">
-              <span class="sr-only"> Regular Price </span>
-
-              <span class="tracking-wider text-gray-900"> £24.00 GBP </span>
-            </p>
-          </div>
-        </a>
-      </li>
+        </li>
+      ))}
     </ul>
   </div>
 </section>
