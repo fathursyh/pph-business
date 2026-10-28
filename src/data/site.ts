@@ -1,12 +1,9 @@
-// Central place to edit business info & listings.
-
 export const SITE = {
   name: "Ruko Cibinong",
   tagline: "Ruko strategis di Bogor, siap untuk usaha Anda",
-  // Format internasional tanpa "+" atau "0" di depan. Contoh: 6281234567890
   whatsapp: "6281234567890",
   address: "Cibinong, Kabupaten Bogor, Jawa Barat",
-  hours: "Senin – Sabtu, 08.00 – 17.00 WIB",
+  hours: "Senin - Sabtu, 08.00 - 17.00 WIB",
 };
 
 export type Ruko = {
@@ -60,4 +57,3 @@ export function waLink(ruko?: Ruko) {
     : `Halo ${SITE.name}, saya ingin bertanya tentang ruko yang tersedia.\n\nNama: \n\nTerima kasih.`;
   return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text)}`;
 }
-
