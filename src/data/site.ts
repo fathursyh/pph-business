@@ -1,5 +1,5 @@
 export const SITE = {
-  name: "Ruko Cibinong",
+  name: "Ruko StarOne",
   tagline: "Ruko strategis di Bogor, siap untuk usaha Anda",
   whatsapp: "6281234567890",
   address: "Cibinong, Kabupaten Bogor, Jawa Barat",
